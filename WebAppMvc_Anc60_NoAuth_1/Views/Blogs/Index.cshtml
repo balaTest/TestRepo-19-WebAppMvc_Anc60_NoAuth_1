@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebAppMvc_Anc60_NoAuth_1.Models.Blog>
+@{
+    ViewBag.Title = "Blogs";
+}
+<h2>Blogs</h2>
+<p>
+    <a asp-controller="Blogs" asp-action="Create">Create New</a> 
+</p>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Url</th>
+    </tr>
+    @{
+        if (Model == null) {
+            throw new Exception("Model is null");
+        }
+        
+        if (Model.GetEnumerator() == null) {
+            throw new Exception("Model enumerator is null");
+        }
+
+        //if (Model.GetEnumerator().Count == 0) {
+        //    throw new Exception("Model does not contain any items");
+        //}
+
+    }
+    @foreach (var item in Model) 
+    {			
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+        </tr>
+    }
+</table>

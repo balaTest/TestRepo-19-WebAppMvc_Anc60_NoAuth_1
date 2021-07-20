@@ -1,7 +1,13 @@
 
+using Microsoft.EntityFrameworkCore;
+using WebAppMvc_Anc60_NoAuth_1.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("BlogConnection");
+builder.Services.AddDbContext<BloggingContext>(options =>
+    options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
